@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: cart-page-rs
+  namespace: sinchana-ns
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+       web: cart
+  template: #It defines which application we have to deploy in a cluster(pod defination)
+    metadata:
+      labels:
+        web: cart
+    spec: #It defines behavior of the pod and its container
+      containers:
+        - name: cart-container
+          image: murulisocial123/cart-page-test:1.0
+          ports:
+            - containerPort: 3000
